@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw
 import torchvision
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 import gdown
+import os
 
 # Load model
 @st.cache_resource
