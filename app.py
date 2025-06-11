@@ -5,10 +5,21 @@ from torchvision.models.detection import fasterrcnn_resnet50_fpn
 from PIL import Image, ImageDraw
 import torchvision
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
+import gdown
 
 # Load model
 @st.cache_resource
 def load_model():
+
+    model_path = "model.pth"
+    # Download from Google Drive if not exists
+    if not os.path.exists(model_path):
+        # Replace this with your real file ID
+        file_id = "17t9AQZ1i7IL5azoZvym9HqfQ_yFiQGiY"
+        url = f"https://drive.google.com/uc?id={file_id}"
+        st.write("⬇️ Downloading model weights...")
+        gdown.download(url, model_path, quiet=False)
+
     model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=False)
     
     # Replace classifier head
